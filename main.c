@@ -3,7 +3,6 @@
 #include "MMA8451.h"
 #include "delay.h"
 #include "SLCD.h"
-#include "uart.h"
 #define threshold 3
 	
 volatile int fall_detected;
@@ -16,7 +15,6 @@ void RED_LED_Reset(void);
 void GREEN_LED_Reset(void);
 
 int main(void) {
-	UART_Init();
 	LED_Init();
 	Switch_Init();
 	Systick_Init();
@@ -41,9 +39,8 @@ int main(void) {
 			
 			if (accMag > threshold) {
 				fall_detected = 1; 
-        SLCD_WriteChar('1'); // Hi?n th? tr?ng th·i ng„
+        SLCD_WriteChar('1'); // Hi?n th? tr?ng th√°i ng√£
       }
-			UART_SendFloat(accMag);
 			delay(10);
 
 			
